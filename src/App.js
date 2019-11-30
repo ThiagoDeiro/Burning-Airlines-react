@@ -32,17 +32,19 @@ const Home =() =>(
   </div>
 )
 
-const Search =() =>(
-  <div>
-    <nav>
-      <Link to="/Home">Home</Link>|{" "}
-      <Link to="/Admin">Admin</Link>|{" "}
-      <Link to="/">Logout</Link>
-    </nav>
-    <SearchFlight />
-    <Plane />
-  </div>
-)
+const Search =() => {
+  return (
+    <div>
+      <nav>
+        <Link to="/Home">Home</Link>|{" "}
+        <Link to="/Admin">Admin</Link>|{" "}
+        <Link to="/">Logout</Link>
+      </nav>
+      <SearchFlight />
+      <Plane />
+    </div>
+  )
+}
 
 const Admin = () =>(
   <div>

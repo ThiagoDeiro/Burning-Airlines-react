@@ -31,7 +31,6 @@ export default class Plane extends Component {
             <div>
                 <ul>
                  {name}
-
                 </ul>
             </div>
         )

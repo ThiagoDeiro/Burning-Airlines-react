@@ -30,7 +30,6 @@ export default class Plane extends Component {
         return (
             <div>
                 <ul>
-                 {name}
                 </ul>
             </div>
         )

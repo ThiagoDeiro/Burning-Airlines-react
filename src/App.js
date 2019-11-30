@@ -41,7 +41,6 @@ const Search =() => {
         <Link to="/">Logout</Link>
       </nav>
       <SearchFlight />
-      <Plane />
     </div>
   )
 }

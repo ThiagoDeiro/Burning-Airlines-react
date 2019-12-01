@@ -20,11 +20,12 @@ export default class Plane extends Component {
 
     render() {
 
-    // const name = this.state.airplane.map((e, id)  => <li key={id}>{e.name}</li>)
+    const name = this.state.airplane.map((e, id)  => <li key={id}>{e.name}</li>)
         
         return (
             <div>
                 <ul>
+                    {name}
                 </ul>
             </div>
         )

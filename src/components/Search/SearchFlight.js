@@ -7,7 +7,8 @@ export default class SearchFlight extends React.Component {
     state = {
     searchFlightOrigin: "",
     searchFlightDestination: "",
-    allFlights: []
+    allFlights: [],
+    allPlanes: []
   };
 
   handleFlightOrigin = event => {
@@ -28,6 +29,19 @@ export default class SearchFlight extends React.Component {
 
   };
 
+  handlePlane = () =>{
+    let searchFlightOrigin = this.handleSearch(); 
+    let filterPlane = searchFlightOrigin.map((u) =>{
+      return u.plane_id
+    })
+
+    let planeId = filterPlane.toString()
+
+    return this.state.allPlanes.filter(x => x.id == planeId)
+    
+  }
+
+
   componentDidMount() {
     const SERVER_URL = `http://localhost:3000/`;
 
@@ -37,29 +51,32 @@ export default class SearchFlight extends React.Component {
     });
     Axios.get(`${SERVER_URL}planes.json`).then(res => { // Trying this to retrive the plane name
         const allPlanes = res.data;
-        this.setState({ allPlanes });
+        this.setState({ allPlanes }); 
+        // console.log(allPlanes)
     });
 
   }
 
   render() {
-
     const allFlightsReturned = this.handleSearch(); // Checks on every key stroke. 
-    console.log(allFlightsReturned)
-
+    // console.log(allFlightsReturned)
+    
     const displayFlightDate = allFlightsReturned.map((ele, id) => <p key={id}>{ele.date}</p>) 
     const displayFlightNumber = allFlightsReturned.map((ele, id) => <p key={id}>{ele.flight_number}</p>)
     const displayFlightOrigin = allFlightsReturned.map((ele, id) => <p key={id}>{ele.origin}</p>)
     const displayFlightDestination = allFlightsReturned.map((ele, id) => <p key={id}>{ele.destination}</p>)
-    const displayFlightPlane = allFlightsReturned.map((ele, id) => <p key={id}>{ele.plane}</p>)
+    
+    const planeNumber = this.handlePlane();
+    
+    const displayFlightPlane = planeNumber.map((ele, id) => <p key={id}>{ele.name}</p>)
 
+
+  
     return (
       <div>
         <h1>Search Flights</h1>
         <input onChange={this.handleFlightOrigin} placeholder='From' />
         <input onChange={this.handleFlightDestination} placeholder='To' />
-        {/* <button onClick={this.handleSearch}>Search</button> */}
-        {/* <p>{this.state.searchFlight}</p> */}
         <div className='flightDisplay'>
             <div>
                 <h5>Date</h5>

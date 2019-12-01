@@ -16,16 +16,11 @@ export default class Plane extends Component {
                 const airplane = res.data;
                 this.setState({airplane})
             })    
-        
-        // .then(response => self.setState((state) => ({...state, airplane: response.data})) ); //results => console.log(JSON.stringify(results.data))
-            // console.log(this.state.airplane)
     }
 
-    
-    
     render() {
 
-    const name = this.state.airplane.map((e, id)  => <li key={id}>{e.name}</li>)
+    // const name = this.state.airplane.map((e, id)  => <li key={id}>{e.name}</li>)
         
         return (
             <div>

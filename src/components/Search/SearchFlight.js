@@ -1,9 +1,9 @@
 import React from "react";
 import Axios from "axios";
 import './SearchFlight.css'
+import Plane from "../Plane/Plane";
 
 export default class SearchFlight extends React.Component {
-  
     state = {
     searchFlightOrigin: "",
     searchFlightDestination: "",
@@ -22,11 +22,10 @@ export default class SearchFlight extends React.Component {
   };
 
   handleSearch = () => {
-    let searchFlightOrigin = this.state.searchFlightOrigin; //.toLowerCase() when we create planes in the DB we should make them all in lowercase then transform the input.
+    let searchFlightOrigin = this.state.searchFlightOrigin;
+     //.toLowerCase() when we create planes in the DB we should make them all in lowercase then transform the input.
     let searchFlightDestination = this.state.searchFlightDestination; //.toLowerCase()
-
     return this.state.allFlights.filter(flight => flight.origin === searchFlightOrigin && flight.destination === searchFlightDestination );
-
   };
 
   handlePlane = () =>{
@@ -34,21 +33,17 @@ export default class SearchFlight extends React.Component {
     let filterPlane = searchFlightOrigin.map((u) =>{
       return u.plane_id
     })
-
     let planeId = filterPlane.toString()
-
     return this.state.allPlanes.filter(x => x.id == planeId)
-    
   }
-
 
   componentDidMount() {
     const SERVER_URL = `http://localhost:3000/`;
-
     Axios.get(`${SERVER_URL}flights.json`).then(res => {
       const allFlights = res.data;
       this.setState({ allFlights });
     });
+
     Axios.get(`${SERVER_URL}planes.json`).then(res => { // Trying this to retrive the plane name
         const allPlanes = res.data;
         this.setState({ allPlanes }); 
@@ -60,23 +55,21 @@ export default class SearchFlight extends React.Component {
   render() {
     const allFlightsReturned = this.handleSearch(); // Checks on every key stroke. 
     // console.log(allFlightsReturned)
-    
     const displayFlightDate = allFlightsReturned.map((ele, id) => <p key={id}>{ele.date}</p>) 
     const displayFlightNumber = allFlightsReturned.map((ele, id) => <p key={id}>{ele.flight_number}</p>)
     const displayFlightOrigin = allFlightsReturned.map((ele, id) => <p key={id}>{ele.origin}</p>)
     const displayFlightDestination = allFlightsReturned.map((ele, id) => <p key={id}>{ele.destination}</p>)
     
     const planeNumber = this.handlePlane();
-    
     const displayFlightPlane = planeNumber.map((ele, id) => <p key={id}>{ele.name}</p>)
-
-
-  
+    
     return (
       <div>
         <h1>Search Flights</h1>
         <input onChange={this.handleFlightOrigin} placeholder='From' />
         <input onChange={this.handleFlightDestination} placeholder='To' />
+        {/* <button onClick={this.handleSearch}>Search</button> */}
+        {/* <p>{this.state.searchFlight}</p> */}
         <div className='flightDisplay'>
             <div>
                 <h5>Date</h5>
@@ -99,7 +92,6 @@ export default class SearchFlight extends React.Component {
                 {displayFlightPlane}
             </div>
         </div>
-
       </div>
     );
   }

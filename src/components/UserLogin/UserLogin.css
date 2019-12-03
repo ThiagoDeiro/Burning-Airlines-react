@@ -1,0 +1,38 @@
+.loginBackgroundImage {
+    background-image: url(https://images.unsplash.com/photo-1488887935090-66c640f39ded?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2689&q=80);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.hiring {
+    color: #fff;
+}
+.hiring h1, .hiring h3 {
+    margin: 0px;
+}
+
+.loginContainer {
+    width: 220px;
+    height: 250px;
+    background-color: rgba(255, 255, 255, 0.9);
+    margin: 40px auto 15px;
+    padding: 10px 30px;
+}
+.loginContainer p {
+    text-align: left;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin: 0 5px;
+}
+.loginContainer input {
+    width: 90%;
+    margin: 5px 0;
+    padding: 3px
+}
+.loginContainer input[type="submit" i] {
+    color: red;
+    border: 1px solid red;
+    border-radius: 10px;
+}

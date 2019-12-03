@@ -13,7 +13,7 @@ const Login = () =>(
   <div>
       <nav className='nav'>
         <Link to="/">Login</Link>|{" "}
-        <Link to="/Home"><button>SignUp</button></Link>
+        <Link to=""><button>SignUp</button></Link>
       </nav>
       <UserLogin />
   </div>
@@ -22,9 +22,8 @@ const Login = () =>(
 const Home =() =>(
   <div>
     <nav>
-      <Link to="/Home">Home</Link>|{" "}
-      <Link to="/Search">Search</Link>|{" "}
-      <Link to="/Admin">Admin</Link>|{" "}
+      <Link to="/home">Home</Link>|{" "}
+      <Link to="/search">Search</Link>|{" "}
       <Link to="/">Logout</Link>
     </nav>
     <nav />
@@ -36,8 +35,8 @@ const Search =() => {
   return (
     <div>
       <nav>
-        <Link to="/Home">Home</Link>|{" "}
-        <Link to="/Admin">Admin</Link>|{" "}
+        <Link to="/home">Home</Link>|{" "}
+        <Link to="/search">Search</Link>|{" "}
         <Link to="/">Logout</Link>
       </nav>
       <SearchFlight />
@@ -48,11 +47,13 @@ const Search =() => {
 const Admin = () =>(
   <div>
     <nav>
-      <Link to="/Home">Home</Link>|{" "}
-      <Link to="/Search">Search</Link>|{" "}
+      <Link to="/admin">Admin</Link>|{" "}
+      <Link to="/airplanes">Planes</Link>|{" "}
+      <Link to="/flights">Flights</Link>|{" "}
       <Link to="/">Logout</Link>
     </nav>
     <Adminpg />
+    
   </div>
 )
 
@@ -62,9 +63,9 @@ function App() {
     <div className="App">
      <Router>
        <Login path="/"/>
-       <Home path='/Home' />
-       <Search path='/Search'/>
-       <Admin path='/Admin' />
+       <Home path='/home' />
+       <Search path='/search'/>
+       <Admin path='/admin' />
      </Router>
     </div>
   );

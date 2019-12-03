@@ -6,6 +6,7 @@ import UserLogin from './components/UserLogin/UserLogin'
 import Homepg from './components/Home/Homepg'
 import SearchFlight from './components/Search/SearchFlight'
 import Adminpg from './components/Admin/Adminpg'
+import FlightDetails from './components/FlightDetails/FlightDetails'
 
 
 
@@ -53,7 +54,7 @@ const Admin = () =>(
       <Link to="/">Logout</Link>
     </nav>
     <Adminpg />
-    
+
   </div>
 )
 
@@ -66,6 +67,7 @@ function App() {
        <Home path='/home' />
        <Search path='/search'/>
        <Admin path='/admin' />
+       <FlightDetails path='/flight/:id' />
      </Router>
     </div>
   );

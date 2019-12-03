@@ -1,5 +1,6 @@
 import React from "react";
 import Axios from "axios";
+import {Router, Link} from '@reach/router';
 import './SearchFlight.css'
 import Plane from "../Plane/Plane";
 
@@ -56,7 +57,7 @@ export default class SearchFlight extends React.Component {
     const allFlightsReturned = this.handleSearch(); // Checks on every key stroke. 
     // console.log(allFlightsReturned)
     const displayFlightDate = allFlightsReturned.map((ele, id) => <p key={id}>{ele.date}</p>) 
-    const displayFlightNumber = allFlightsReturned.map((ele, id) => <p key={id}>{ele.flight_number}</p>)
+    const displayFlightNumber = allFlightsReturned.map((ele, id) => <Link to={"/flight/"+ele.id} key={id}>{ele.flight_number}</Link>)
     const displayFlightOrigin = allFlightsReturned.map((ele, id) => <p key={id}>{ele.origin}</p>)
     const displayFlightDestination = allFlightsReturned.map((ele, id) => <p key={id}>{ele.destination}</p>)
     

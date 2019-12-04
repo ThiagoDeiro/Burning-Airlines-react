@@ -1,8 +1,7 @@
 import React from "react";
 import Axios from "axios";
-import {Router, Link} from '@reach/router';
+import {Link} from '@reach/router';
 import './SearchFlight.css'
-import Plane from "../Plane/Plane";
 
 export default class SearchFlight extends React.Component {
     state = {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
-import {Router, Link} from '@reach/router';
+
 
 export default class FlightDetails extends Component {
     
@@ -26,20 +26,42 @@ export default class FlightDetails extends Component {
         });
     
       }
+      // seats logic ***************************************************************************************
+    // seatsHnadler = () => {
+    //   let planeData = this.state.allPlanes
+    //   const mapping = planeData.map((e) => {
+    //     return e.rows
+    //   })
+
+    // }
     
     
     render() {
-        
+      const displayPlaneRows = this.state.allPlanes.map((ele, id) => {return (ele.rows)})
+      const displayPlaneColumns = this.state.allPlanes.map((ele, id) => {return (ele.columns)})
+      let arr = []
+      for (var i=0; i < displayPlaneRows; i++){
+        arr.push([])
+      for(var j=0; j < displayPlaneColumns; j++){
+        arr[i].push('x')
+      }
+    }
+    const diagramRows = arr.map((r, rowIndex) => <tr key={ rowIndex}>{r.map((c, colIndex) =><td key={colIndex}> <span>[]</span></td>)}</tr>)
+
+
         // console.log(this.state.allFlights)
         // console.log(this.state.allPlanes)
-        // console.log(this.getID())
-        
+        // console.log(this.getID()
         const displayFlightDate = this.state.allFlights.map((ele, id) => <p key={id}>{ele.date}</p>) 
         const displayFlightNumber = this.state.allFlights.map((ele, id) => <p key={id}>{ele.flight_number}</p>)
         const displayFlightOrigin = this.state.allFlights.map((ele, id) => <p key={id}>{ele.origin}</p>)
         const displayFlightDestination = this.state.allFlights.map((ele, id) => <p key={id}>{ele.destination}</p>)
         const displayPlaneNumber = this.state.allPlanes.map((ele, id) => <p key={id}>{ele.name}</p>)
-
+       
+        console.log(displayPlaneRows)
+        console.log(displayPlaneColumns)
+       
+        console.log(arr)
         return (
             <div>
                 {displayFlightDate}
@@ -47,7 +69,18 @@ export default class FlightDetails extends Component {
                 {displayFlightOrigin}
                 {displayFlightDestination}
                 {displayPlaneNumber}
+
+                <table>
+                  <tbody> 
+                   {diagramRows}
+
+                   
+                   </tbody>
+                </table>
+                
             </div>
+
+           
         )
     }
 }

@@ -1,12 +1,12 @@
 import React from 'react';
 import {Router, Link} from '@reach/router';
 import './App.css';
-import Plane from './components/Plane/Plane'
 import UserLogin from './components/UserLogin/UserLogin'
 import Homepg from './components/Home/Homepg'
 import SearchFlight from './components/Search/SearchFlight'
 import Adminpg from './components/Admin/Adminpg'
 import FlightDetails from './components/FlightDetails/FlightDetails'
+import FlightSeats from'./components/FlightSeats/FlightSeats'
 
 
 

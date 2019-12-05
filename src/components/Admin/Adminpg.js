@@ -1,8 +1,5 @@
 import React from 'react'
-<<<<<<< HEAD
 import {Link} from '@reach/router';
-=======
->>>>>>> ff1565467eb40fc6ff834f8a9b901c91dc99176d
 
 export default class Adminpg extends React.Component{
 

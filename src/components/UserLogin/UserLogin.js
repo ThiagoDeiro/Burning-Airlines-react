@@ -35,7 +35,6 @@ export default class UserLogin extends React.Component{
         this.setState({userEmail: event.target.value})
     }
 
-
     render(){
         return(
             <div className='loginBackgroundImage'>
@@ -63,7 +62,6 @@ export default class UserLogin extends React.Component{
                     <h1>Now Hiring Pilots</h1>
                     <h3>no experience needed</h3>
                 </div>
-
             </div>
         )
     }

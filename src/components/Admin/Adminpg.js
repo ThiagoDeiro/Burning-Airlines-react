@@ -1,14 +1,15 @@
 import React from 'react'
-import {Router, Link} from '@reach/router';
+import {Link} from '@reach/router';
 
 export default class Adminpg extends React.Component{
+
     render(){
         return(
             <div>
                 <p>Admin info</p>
-                <a href="http://localhost:3000/planes/new"><button>Create Plane</button></a>
+                <Link to="/createPlane"><button>Create Plane</button></Link>
                 <p>Or</p>
-                <a href="http://localhost:3000/flights/new"><button>Create Flight</button></a>
+                <Link to="/createFlight"><button>Create Flight</button></Link>
             </div>
         )
     }

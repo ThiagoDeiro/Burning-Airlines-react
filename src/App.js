@@ -1,11 +1,11 @@
 import React from 'react';
 import {Router, Link} from '@reach/router';
 import './App.css';
-import Plane from './components/Plane/Plane'
-import UserLogin from './components/UserLogin/UserLogin'
-import Homepg from './components/Home/Homepg'
-import SearchFlight from './components/Search/SearchFlight'
-import Adminpg from './components/Admin/Adminpg'
+import UserLogin from './components/UserLogin/UserLogin';
+import Homepg from './components/Home/Homepg';
+import SearchFlight from './components/Search/SearchFlight';
+import Adminpg from './components/Admin/Adminpg';
+import CreatePlane from './components/Admin/CreatePlane';
 
 
 
@@ -52,8 +52,19 @@ const Admin = () =>(
       <Link to="/flights">Flights</Link>|{" "}
       <Link to="/">Logout</Link>
     </nav>
-    <Adminpg />
-    
+    <Adminpg /> 
+  </div>
+)
+
+const Create = () =>(
+  <div>
+    <nav>
+      <Link to="/admin">Admin</Link>|{" "}
+      <Link to="/airplanes">Planes</Link>|{" "}
+      <Link to="/flights">Flights</Link>|{" "}
+      <Link to="/">Logout</Link>
+    </nav>
+    <CreatePlane />
   </div>
 )
 
@@ -66,6 +77,7 @@ function App() {
        <Home path='/home' />
        <Search path='/search'/>
        <Admin path='/admin' />
+       <Create path="/createPlane"/>
      </Router>
     </div>
   );

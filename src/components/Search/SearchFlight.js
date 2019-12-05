@@ -1,7 +1,6 @@
 import React from "react";
 import Axios from "axios";
 import './SearchFlight.css'
-import Plane from "../Plane/Plane";
 
 export default class SearchFlight extends React.Component {
     state = {

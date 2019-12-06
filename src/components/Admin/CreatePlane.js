@@ -1,6 +1,6 @@
-import {React , Redirect} from 'react';
+import React from 'react';
 import Axios from 'axios';
-import {navigate} from '@reach/router';
+import {Redirect} from '@reach/router';
 
  class CreatePlane extends React.Component{
     state = {

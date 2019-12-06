@@ -1,86 +1,132 @@
-import React, { Component } from 'react'
-import Axios from 'axios'
-
+import React, { Component } from "react";
+import Axios from "axios";
+import Seat from "../Seat/Seat";
+import "./FlightDetails.css";
+import {Link} from '@reach/router';
 
 export default class FlightDetails extends Component {
-    
-    state = {
-        allFlights: [],
-        allPlanes: [],
-        flightId: ''
-      };
+  state = {
+    allFlights: [],
+    allPlanes: [],
+    flightId: "",
+    flightSeatsBooked: []
+  };
 
-    async componentDidMount() {
+  async componentDidMount() {
+    const SERVER_URL = `http://localhost:3000/`;
+    await Axios.get(`${SERVER_URL}flights/${this.props.id}.json`).then(res => {
+      const flights = res.data;
+      // console.log(flights);
+      this.setState({ allFlights: flights });
+    });
 
-        const SERVER_URL = `http://localhost:3000/`;
-        await Axios.get(`${SERVER_URL}flights/${this.props.id}.json`).then(res => {
-          const flights = res.data;
-          console.log(flights)
-          this.setState({ allFlights: [flights] });
-        });
-    
-        Axios.get(`${SERVER_URL}planes/${this.state.allFlights[0].plane_id}.json`).then(res => { // Trying this to retrive the plane name
-            const allPlanes = res.data;
-            this.setState({ allPlanes: [allPlanes] }); 
-            // console.log(allPlanes)
-        });
-    
-      }
-      // seats logic ***************************************************************************************
-    // seatsHnadler = () => {
-    //   let planeData = this.state.allPlanes
-    //   const mapping = planeData.map((e) => {
-    //     return e.rows
-    //   })
+    Axios.get(
+      `${SERVER_URL}planes/${this.state.allFlights.plane_id}.json`
+    ).then(res => {
+      const allPlanes = res.data;
+      this.setState({ allPlanes: allPlanes });
+    });
+  }
 
-    // }
-    
-    
-    render() {
-      const displayPlaneRows = this.state.allPlanes.map((ele, id) => {return (ele.rows)})
-      const displayPlaneColumns = this.state.allPlanes.map((ele, id) => {return (ele.columns)})
-      let arr = []
-      for (var i=0; i < displayPlaneRows; i++){
-        arr.push([])
-      for(var j=0; j < displayPlaneColumns; j++){
-        arr[i].push('x')
+  handleSeatSelected = (event, row, col, index) => {
+    if (event) {
+      this.setState({
+        flightSeatsBooked: [
+          ...this.state.flightSeatsBooked,
+          { event, row, col }
+        ]
+      });
+    }
+    if (!event) {
+      const flightSeatsBooked = [...this.state.flightSeatsBooked];
+      flightSeatsBooked.splice(index, 1);
+      this.setState({ flightSeatsBooked: flightSeatsBooked });
+    }
+  };
+
+  render() {
+    const displayPlaneRows = this.state.allPlanes.rows;
+    const displayPlaneColumns = this.state.allPlanes.columns;
+
+    let arr = [];
+    for (var i = 0; i < displayPlaneRows; i++) {
+      arr.push([]);
+      for (var j = 0; j < displayPlaneColumns; j++) {
+        arr[i].push("");
       }
     }
-    const diagramRows = arr.map((r, rowIndex) => <tr key={ rowIndex}>{r.map((c, colIndex) =><td key={colIndex}> <span>[]</span></td>)}</tr>)
 
+    const diagramRows = arr.map((r, rowIndex) => (
+      <tr key={rowIndex}>
+        {r.map((c, colIndex) => (
+          <td key={colIndex}>
+            <Seat
+              seatSelected={this.handleSeatSelected}
+              seatRow={rowIndex}
+              seatCol={colIndex}
+            />
+          </td>
+        ))}
+      </tr>
+    ));
 
-        // console.log(this.state.allFlights)
-        // console.log(this.state.allPlanes)
-        // console.log(this.getID()
-        const displayFlightDate = this.state.allFlights.map((ele, id) => <p key={id}>{ele.date}</p>) 
-        const displayFlightNumber = this.state.allFlights.map((ele, id) => <p key={id}>{ele.flight_number}</p>)
-        const displayFlightOrigin = this.state.allFlights.map((ele, id) => <p key={id}>{ele.origin}</p>)
-        const displayFlightDestination = this.state.allFlights.map((ele, id) => <p key={id}>{ele.destination}</p>)
-        const displayPlaneNumber = this.state.allPlanes.map((ele, id) => <p key={id}>{ele.name}</p>)
-       
-        console.log(displayPlaneRows)
-        console.log(displayPlaneColumns)
-       
-        console.log(arr)
-        return (
-            <div>
-                {displayFlightDate}
-                {displayFlightNumber}
-                {displayFlightOrigin}
-                {displayFlightDestination}
-                {displayPlaneNumber}
+    const displayFlightDate = this.state.allFlights.date;
+    const displayFlightNumber = this.state.allFlights.flight_number;
+    const displayFlightOrigin = this.state.allFlights.origin;
+    const displayFlightDestination = this.state.allFlights.destination;
+    const displayPlaneNumber = this.state.allPlanes.name;
 
-                <table>
-                  <tbody> 
-                   {diagramRows}
-
-                   
-                   </tbody>
-                </table>
-                
-            </div>
-
-           
-        )
+    let seatSelected;
+    let youSelected;
+    if (this.state.flightSeatsBooked.length > 0) {
+      youSelected = "You have selected: ";
+      seatSelected = this.state.flightSeatsBooked.map((ele, index) => (
+        <span key={index}>
+          {ele.col}
+          {ele.row}{" "}
+        </span>
+      ));
     }
+
+    return (
+      <div>
+      <nav>
+        <Link to="/home">Home</Link>
+        <Link to="/search">Search</Link>
+        <Link to="/">Logout</Link>
+      </nav>
+        <div className="flightDisplay">
+          <div>
+            <h5>Date</h5>
+            {displayFlightDate}
+          </div>
+          <div>
+            <h5>Flight</h5>
+            {displayFlightNumber}
+          </div>
+          <div>
+            <h5>Origin</h5>
+            {displayFlightOrigin}
+          </div>
+          <div>
+            <h5>Destination</h5>
+            {displayFlightDestination}
+          </div>
+          <div>
+            <h5>Plane</h5>
+            {displayPlaneNumber}
+          </div>
+        </div>
+        <h3>Select Your Seat</h3>
+        <div className="flightSeats">
+          <table className="tableSeats">
+            <tbody>{diagramRows}</tbody>
+          </table>
+        </div>
+        <div>
+          {youSelected} {seatSelected}
+        </div>
+      </div>
+    );
+  }
 }

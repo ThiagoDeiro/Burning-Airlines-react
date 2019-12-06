@@ -7,16 +7,11 @@ import SearchFlight from './components/Search/SearchFlight';
 import Adminpg from './components/Admin/Adminpg';
 import CreatePlane from './components/Admin/CreatePlane';
 import FlightDetails from './components/FlightDetails/FlightDetails'
-import FlightSeats from'./components/FlightSeats/FlightSeats'
 
 
 
 const Login = () =>(
   <div>
-      <nav className='nav'>
-        <Link to="/">Login</Link>|{" "}
-        <Link to=""><button>SignUp</button></Link>
-      </nav>
       <UserLogin />
   </div>
 )
@@ -24,11 +19,10 @@ const Login = () =>(
 const Home =() =>(
   <div>
     <nav>
-      <Link to="/home">Home</Link>|{" "}
-      <Link to="/search">Search</Link>|{" "}
+      <Link to="/home">Home</Link>
+      <Link to="/search">Search</Link>
       <Link to="/">Logout</Link>
     </nav>
-    <nav />
     <Homepg />
   </div>
 )
@@ -37,8 +31,8 @@ const Search =() => {
   return (
     <div>
       <nav>
-        <Link to="/home">Home</Link>|{" "}
-        <Link to="/search">Search</Link>|{" "}
+        <Link to="/home">Home</Link>
+        <Link to="/search">Search</Link>
         <Link to="/">Logout</Link>
       </nav>
       <SearchFlight />
@@ -90,7 +84,7 @@ function App() {
        <Login path="/"/>
        <Home path='/home' />
        <Search path='/search'/>
-       <Admin path='/admin' />
+       <Admin path='/admin'/>
        <Create path="/createPlane"/>
        <Planes path="/planes"/>
        <FlightDetails path='/flight/:id' />

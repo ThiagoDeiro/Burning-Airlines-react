@@ -1,0 +1,8 @@
+.seat {
+    display: flex;
+    line-height: 1.8rem;
+    height: 70px;
+    width: 70px;
+    display: inline-block;
+    color: #fff;
+}

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Axios from "axios";
 import Seat from "../Seat/Seat";
 import "./FlightDetails.css";
+import {Link} from '@reach/router';
 
 export default class FlightDetails extends Component {
   state = {
@@ -28,18 +29,19 @@ export default class FlightDetails extends Component {
   }
 
   handleSeatSelected = (event, row, col, index) => {
-	
-	if (event) {
-		this.setState({
-			flightSeatsBooked: [...this.state.flightSeatsBooked, { event, row, col }]
-		});
-	}
-	if (!event) {
-		const flightSeatsBooked = [...this.state.flightSeatsBooked]
-		flightSeatsBooked.splice(index, 1)
-		this.setState({flightSeatsBooked: flightSeatsBooked });
-	}
-	
+    if (event) {
+      this.setState({
+        flightSeatsBooked: [
+          ...this.state.flightSeatsBooked,
+          { event, row, col }
+        ]
+      });
+    }
+    if (!event) {
+      const flightSeatsBooked = [...this.state.flightSeatsBooked];
+      flightSeatsBooked.splice(index, 1);
+      this.setState({ flightSeatsBooked: flightSeatsBooked });
+    }
   };
 
   render() {
@@ -75,10 +77,10 @@ export default class FlightDetails extends Component {
     const displayPlaneNumber = this.state.allPlanes.name;
 
     let seatSelected;
-	let youSelected;
+    let youSelected;
     if (this.state.flightSeatsBooked.length > 0) {
-		youSelected = 'You have selected: '
-		seatSelected = this.state.flightSeatsBooked.map((ele, index) => (
+      youSelected = "You have selected: ";
+      seatSelected = this.state.flightSeatsBooked.map((ele, index) => (
         <span key={index}>
           {ele.col}
           {ele.row}{" "}
@@ -88,6 +90,11 @@ export default class FlightDetails extends Component {
 
     return (
       <div>
+      <nav>
+        <Link to="/home">Home</Link>
+        <Link to="/search">Search</Link>
+        <Link to="/">Logout</Link>
+      </nav>
         <div className="flightDisplay">
           <div>
             <h5>Date</h5>
@@ -116,7 +123,9 @@ export default class FlightDetails extends Component {
             <tbody>{diagramRows}</tbody>
           </table>
         </div>
-        <div>{youSelected} {seatSelected}</div>
+        <div>
+          {youSelected} {seatSelected}
+        </div>
       </div>
     );
   }

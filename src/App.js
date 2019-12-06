@@ -19,11 +19,10 @@ const Login = () =>(
 const Home =() =>(
   <div>
     <nav>
-      <Link to="/home">Home</Link>|{" "}
-      <Link to="/search">Search</Link>|{" "}
+      <Link to="/home">Home</Link>
+      <Link to="/search">Search</Link>
       <Link to="/">Logout</Link>
     </nav>
-    <nav />
     <Homepg />
   </div>
 )
@@ -32,8 +31,8 @@ const Search =() => {
   return (
     <div>
       <nav>
-        <Link to="/home">Home</Link>|{" "}
-        <Link to="/search">Search</Link>|{" "}
+        <Link to="/home">Home</Link>
+        <Link to="/search">Search</Link>
         <Link to="/">Logout</Link>
       </nav>
       <SearchFlight />
@@ -44,9 +43,9 @@ const Search =() => {
 const Admin = () =>(
   <div>
     <nav>
-      <Link to="/admin">Admin</Link>|{" "}
-      <Link to="/airplanes">Planes</Link>|{" "}
-      <Link to="/flights">Flights</Link>|{" "}
+      <Link to="/admin">Admin</Link>
+      <Link to="/airplanes">Planes</Link>
+      <Link to="/flights">Flights</Link>
       <Link to="/">Logout</Link>
     </nav>
     <Adminpg /> 
@@ -56,9 +55,9 @@ const Admin = () =>(
 const Create = () =>(
   <div>
     <nav>
-      <Link to="/admin">Admin</Link>|{" "}
-      <Link to="/airplanes">Planes</Link>|{" "}
-      <Link to="/flights">Flights</Link>|{" "}
+      <Link to="/admin">Admin</Link>
+      <Link to="/airplanes">Planes</Link>
+      <Link to="/flights">Flights</Link>
       <Link to="/">Logout</Link>
     </nav>
     <CreatePlane />
@@ -73,7 +72,7 @@ function App() {
        <Login path="/"/>
        <Home path='/home' />
        <Search path='/search'/>
-       <Admin path='/admin' />
+       <Admin path='/admin'/>
        <Create path="/createPlane"/>
        <FlightDetails path='/flight/:id' />
      </Router>

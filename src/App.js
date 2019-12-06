@@ -50,7 +50,7 @@ const Admin = () =>(
   <div>
     <nav>
       <Link to="/admin">Admin</Link>|{" "}
-      <Link to="/airplanes">Planes</Link>|{" "}
+      <Link to="/planes">Planes</Link>|{" "}
       <Link to="/flights">Flights</Link>|{" "}
       <Link to="/">Logout</Link>
     </nav>
@@ -62,11 +62,23 @@ const Create = () =>(
   <div>
     <nav>
       <Link to="/admin">Admin</Link>|{" "}
-      <Link to="/airplanes">Planes</Link>|{" "}
+      <Link to="/planes">Planes</Link>|{" "}
       <Link to="/flights">Flights</Link>|{" "}
       <Link to="/">Logout</Link>
     </nav>
     <CreatePlane />
+  </div>
+)
+
+const Planes = () =>(
+  <div>
+    <nav>
+      <Link to="/admin">Admin</Link>|{" "}
+      <Link to="/planes">Planes</Link>|{" "}
+      <Link to="/flights">Flights</Link>|{" "}
+      <Link to="/">Logout</Link>
+    </nav>
+    <Planes />
   </div>
 )
 
@@ -80,6 +92,7 @@ function App() {
        <Search path='/search'/>
        <Admin path='/admin' />
        <Create path="/createPlane"/>
+       <Planes path="/planes"/>
        <FlightDetails path='/flight/:id' />
      </Router>
     </div>

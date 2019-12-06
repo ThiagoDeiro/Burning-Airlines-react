@@ -7,16 +7,11 @@ import SearchFlight from './components/Search/SearchFlight';
 import Adminpg from './components/Admin/Adminpg';
 import CreatePlane from './components/Admin/CreatePlane';
 import FlightDetails from './components/FlightDetails/FlightDetails'
-import FlightSeats from'./components/FlightSeats/FlightSeats'
 
 
 
 const Login = () =>(
   <div>
-      <nav className='nav'>
-        <Link to="/">Login</Link>|{" "}
-        <Link to=""><button>SignUp</button></Link>
-      </nav>
       <UserLogin />
   </div>
 )

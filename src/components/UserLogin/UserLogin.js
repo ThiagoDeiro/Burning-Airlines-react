@@ -40,6 +40,7 @@ export default class UserLogin extends React.Component{
             <div className='loginBackgroundImage'>
                 <div className='loginContainer'>
                     <h1>Login</h1>
+                
                     <form onSubmit={this.handleSubmit}>
                         <div>
                         <p>Name</p>
